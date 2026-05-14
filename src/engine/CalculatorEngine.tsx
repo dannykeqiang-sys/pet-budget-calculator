@@ -9,6 +9,8 @@ import RealitySlider from '@/components/interactive/RealitySlider'
 import TimeMoneyMatrix from '@/components/interactive/TimeMoneyMatrix'
 import ProgressStepper from '@/components/interactive/ProgressStepper'
 import InteractiveChart from '@/components/interactive/InteractiveChart'
+import VisualMetaphor from '@/components/interactive/VisualMetaphor'
+import FuturePreview from '@/components/interactive/FuturePreview'
 
 interface Props {
   scenario: ScenarioConfig
@@ -204,6 +206,13 @@ export default function CalculatorEngine({ scenario }: Props) {
           />
         ))}
       </div>
+
+      {/* ══════ 3.5 视觉隐喻 ══════ */}
+      <VisualMetaphor
+        totalFirstYear={calculations.totalFirstYear}
+        adjustedWeeklyHours={calculations.adjustedWeeklyHours}
+        color={scenario.color}
+      />
 
       {/* ══════ 4. 对比基线（若存在） ══════ */}
       {scenario.comparisonBaseline && (
@@ -531,6 +540,16 @@ export default function CalculatorEngine({ scenario }: Props) {
         <span className="text-xs text-muted-foreground uppercase tracking-widest">冷知识</span>
         <p className="mt-2 text-sm italic text-muted-foreground">"{scenario.funFact}"</p>
       </motion.div>
+
+      {/* ══════ 17. 未来预演 ══════ */}
+      <FuturePreview
+        scenario={scenario}
+        totalFirstYear={calculations.totalFirstYear}
+        adjustedWeeklyHours={calculations.adjustedWeeklyHours}
+        satisfactionScore={calculations.satisfactionScore}
+        baselineAnnual={calculations.baselineAnnual}
+        color={scenario.color}
+      />
 
       {/* ══════ 操作按钮 ══════ */}
       <div className="flex gap-3 justify-center flex-wrap">
