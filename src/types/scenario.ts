@@ -12,11 +12,30 @@ export interface AdoptionOption {
   description: string
 }
 
+/* ── 知识科普 Tips ── */
+export interface CostTip {
+  title: string
+  content: string
+  riskLevel?: 'low' | 'medium' | 'high'
+  emotionalValue?: string
+}
+
+/* ── 对比基线 ── */
+export interface ComparisonBaseline {
+  label: string
+  unitPrice: number
+  unit: string
+  description: string
+}
+
 export interface CostItem {
   label: string
   amount: number
   frequency: 'once' | 'monthly' | 'yearly' | 'weekly'
   note?: string
+  depreciationRate?: number
+  lifespan?: number
+  tip?: CostTip
 }
 
 export interface CostSection {
@@ -84,6 +103,9 @@ export interface ScenarioConfig {
   checklist: string[]
   risks?: RiskItem[]
   funFact: string
+  bufferFactor?: number
+  comparisonBaseline?: ComparisonBaseline
+  depreciationTotal?: number
 }
 
 /* ── 用户输入 ── */

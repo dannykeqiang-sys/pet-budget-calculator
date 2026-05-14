@@ -2,11 +2,13 @@ import type { ScenarioConfig } from '@/types/scenario'
 import { petScenarios } from './scenarios/pets'
 import { hobbyScenarios } from './scenarios/hobbies'
 import { careerScenarios } from './scenarios/career'
+import { lifeScenarios } from './scenarios/lifestyle'
 
 export const allScenarios: ScenarioConfig[] = [
   ...petScenarios,
   ...hobbyScenarios,
   ...careerScenarios,
+  ...lifeScenarios,
 ]
 
 export function getScenariosByCategory(category: string): ScenarioConfig[] {
