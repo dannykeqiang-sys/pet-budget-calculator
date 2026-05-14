@@ -1,0 +1,212 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ── Brand Colors ── */
+    --warm: 32 95% 55%;
+    --coral: 12 90% 60%;
+    --honey: 45 90% 50%;
+    --sage: 150 30% 45%;
+
+    /* ── Semantic Tokens ── */
+    --background: 30 30% 99%;
+    --foreground: 30 10% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 30 10% 12%;
+
+    --primary: 12 90% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 32 60% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 150 30% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 30 20% 95%;
+    --muted-foreground: 30 5% 45%;
+
+    --border: 30 15% 88%;
+
+    --surface: 30 30% 97%;
+    --surface-hover: 30 25% 93%;
+
+    /* ── Gradients ── */
+    --gradient-primary: linear-gradient(135deg, hsl(12, 90%, 60%), hsl(32, 95%, 55%));
+    --gradient-accent: linear-gradient(135deg, hsl(150, 30%, 40%), hsl(160, 40%, 30%));
+    --gradient-warm: linear-gradient(135deg, hsl(32, 95%, 55%), hsl(45, 90%, 50%));
+    --gradient-card: linear-gradient(180deg, hsl(0, 0%, 100%), hsl(30, 30%, 98%));
+
+    /* ── Shadows ── */
+    --shadow-soft: 0 2px 15px -3px rgba(0, 0, 0, 0.07);
+    --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.06);
+    --shadow-elevated: 0 8px 30px -4px rgba(0, 0, 0, 0.1);
+
+    /* ── Radius ── */
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+  }
+
+  /* ── Dark Mode ── */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: 30 10% 6%;
+      --foreground: 30 10% 93%;
+
+      --card: 30 10% 10%;
+      --card-foreground: 30 10% 93%;
+
+      --primary: 12 85% 58%;
+      --primary-foreground: 0 0% 100%;
+
+      --secondary: 32 60% 45%;
+      --secondary-foreground: 0 0% 100%;
+
+      --accent: 150 30% 35%;
+      --accent-foreground: 0 0% 100%;
+
+      --muted: 30 10% 18%;
+      --muted-foreground: 30 5% 55%;
+
+      --border: 30 10% 20%;
+
+      --surface: 30 10% 12%;
+      --surface-hover: 30 10% 18%;
+    }
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.2);
+    color: hsl(var(--foreground));
+  }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+}
+
+@layer components {
+  /* ── Gradient Text ── */
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .gradient-text-accent {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .gradient-text-warm {
+    background: var(--gradient-warm);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Card Base ── */
+  .card-base {
+    background: var(--gradient-card);
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    transition: box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .card-base:hover {
+    box-shadow: var(--shadow-elevated);
+    transform: translateY(-2px);
+  }
+
+  /* ── Glass Card ── */
+  .glass-card {
+    background: hsl(var(--card) / 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--border) / 0.5);
+    border-radius: var(--radius-lg);
+  }
+
+  /* ── Button Variants ── */
+  .btn-primary {
+    background: var(--gradient-primary);
+    color: var(--primary-foreground);
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-md);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 14px 0 hsl(var(--primary) / 0.3);
+  }
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px 0 hsl(var(--primary) / 0.4);
+  }
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  .btn-secondary {
+    background: hsl(var(--muted));
+    color: hsl(var(--foreground));
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid hsl(var(--border));
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-secondary:hover {
+    background: hsl(var(--surface-hover));
+    border-color: hsl(var(--primary) / 0.3);
+  }
+}
+
+@layer utilities {
+  /* ── Animation Utilities ── */
+  .animate-stagger > * {
+    opacity: 0;
+    animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .animate-stagger > *:nth-child(1) { animation-delay: 0ms; }
+  .animate-stagger > *:nth-child(2) { animation-delay: 80ms; }
+  .animate-stagger > *:nth-child(3) { animation-delay: 160ms; }
+  .animate-stagger > *:nth-child(4) { animation-delay: 240ms; }
+  .animate-stagger > *:nth-child(5) { animation-delay: 320ms; }
+  .animate-stagger > *:nth-child(6) { animation-delay: 400ms; }
+  .animate-stagger > *:nth-child(7) { animation-delay: 480ms; }
+  .animate-stagger > *:nth-child(8) { animation-delay: 560ms; }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(12px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+}
