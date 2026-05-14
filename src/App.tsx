@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
@@ -5,8 +6,13 @@ import HomePage from '@/pages/HomePage'
 import ScenarioPage from '@/pages/ScenarioPage'
 import HistoryPage from '@/pages/HistoryPage'
 import ComparePage from '@/pages/ComparePage'
+import { seedDemoData } from '@/utils/seedData'
 
 export default function App() {
+  useEffect(() => {
+    seedDemoData()
+  }, [])
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
